@@ -1,0 +1,22 @@
+.aside{
+    display: block;
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(58, 58, 59);
+
+}
+ 
+.titulo{
+    justify-self: flex-start;
+    padding-left: 10px;
+    color: aliceblue;
+}
+
+.botao{
+    
+    height: 30px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

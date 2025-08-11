@@ -1,0 +1,11 @@
+.div{
+    position: absolute;
+    margin: 20px;
+    
+}
+
+.nota{
+     width: 200px;
+     height: 200px;
+     background-color: #FFE6A9 ;
+}
