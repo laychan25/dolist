@@ -1,3 +1,10 @@
+.secao{
+  width: 85vw;
+  margin: 20px;
+  background-color: rgb(95, 68, 95);
+}
+
+
 .div{
     position: absolute;
     margin: 20px;
@@ -7,5 +14,54 @@
 .nota{
      width: 200px;
      height: 200px;
-     background-color: #FFE6A9 ;
+     border-bottom-left-radius: 10px;
+     border-bottom-right-radius: 10px;
+     border: none;
+}
+
+
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+.cabecalho{
+  display: flex;
+  padding: 10px;
+  background-color: rgb(43, 40, 40);
+  justify-content: space-between;
+  border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+
+}
+ 
+.botao{
+  width: 25px;
+  height: 25px;
+  margin: 2px;
+  border: none;
+}
+
+.botaoAzul{
+ background-color: #4496c5;
+}
+
+.botaoRosa{
+ background-color: #a970c4;
+}
+
+.botaoVerde{
+  background-color: #6acfad;
+}
+
+.botao:hover{
+    cursor: pointer;
+}
+
+.botaoApagar{
+  background: transparent;
+  border:  none;
+  color: aliceblue;
+
 }

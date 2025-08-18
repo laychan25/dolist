@@ -13,6 +13,7 @@ export function NotasProvider({ children }) {
   const criaNota = () => {
     setNotas((prevNotas) => {
       const ultimaNota = prevNotas[prevNotas.length - 1];
+      
 
       const left = ultimaNota ? ultimaNota.left + 20 : 20;
       const top = ultimaNota ? ultimaNota.top + 20 : 20;
@@ -20,9 +21,10 @@ export function NotasProvider({ children }) {
       const novaNota = {
         id: uuidv4(),
         texto: "",
-        cor: "#923333",
+        cor: '#bdca74',
         left,
         top,
+        zIndex: 1
       };
 
       return [...prevNotas, novaNota];
