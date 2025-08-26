@@ -30,7 +30,6 @@ const Nota = () => {
   const padding = 20
 
   const [zIndexMax , setIndex]= useState(2)
-  console.log(zIndexMax)
 
   useEffect(() => {
     if (containerRef.current) {
@@ -108,6 +107,10 @@ const Nota = () => {
      setIndex(prev=> prev + 1)
   }
 
+  const apagaNota=(id)=>{
+     setNotas(prevNotas=> prevNotas.filter(nota=> nota.id === id? false: true))
+  }
+
   return (
     <section ref={containerRef} className={styles.secao}>
       {notas.map((nota) => (
@@ -125,19 +128,23 @@ const Nota = () => {
               <div>
                 <button
                   className={`${styles.botao} ${styles.botaoAzul}`}
-                  onClick={() => handleCor(nota.id, "#4496c5")}
+                  onClick={() => handleCor(nota.id, "#A7C7E7")}
                 ></button>
                 <button
                   className={`${styles.botao} ${styles.botaoRosa}`}
-                  onClick={() => handleCor(nota.id, "#a970c4")}
+                  onClick={() => handleCor(nota.id, "#D7BCE8")}
                 ></button>
                 <button
                   className={`${styles.botao} ${styles.botaoVerde}`}
-                  onClick={() => handleCor(nota.id, "#6acfad")}
+                  onClick={() => handleCor(nota.id, "#BEEBC4")}
+                ></button>
+                <button
+                  className={`${styles.botao} ${styles.botaoAmarelo}`}
+                  onClick={() => handleCor(nota.id, "#FFF6B7")}
                 ></button>
               </div>
               <div>
-                <button className={styles.botaoApagar}>X</button>
+                <button onClick={()=>apagaNota(nota.id)} className={styles.botaoApagar}>X</button>
               </div>
             </header>
             <textarea
@@ -150,7 +157,13 @@ const Nota = () => {
               className={`${styles.nota}`}
               value={nota.texto}
               onChange={(e) => handleChange(nota.id, e.target.value)}
-            ></textarea>
+            > 
+            </textarea>
+            <div className={styles.opcoes}>
+               <button className={styles.negrito}>B</button>
+               <button className={styles.italico}>I</button>
+               <button className={styles.li}>li</button>
+            </div>
           </div>
         </React.Fragment>
       ))}

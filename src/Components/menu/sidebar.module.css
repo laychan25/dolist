@@ -2,8 +2,13 @@
     display: block;
     width: 200px;
     height: 100vh;
-    background-color: rgb(58, 58, 59);
+    background-color:#080916
 
+}
+
+.logo{
+    width: 150px;
+   
 }
  
 .titulo{
@@ -14,7 +19,8 @@
 
 .botao{
     
-    height: 30px;
+    width: 70px;
+    height: 70px;
     border-radius: 10px;
     background-color: transparent;
     border: none;

@@ -1,7 +1,7 @@
 .secao{
   width: 85vw;
   margin: 20px;
-  background-color: rgb(95, 68, 95);
+  background-color: #C8D9EB
 }
 
 
@@ -12,27 +12,28 @@
 }
 
 .nota{
-     width: 200px;
-     height: 200px;
-     border-bottom-left-radius: 10px;
-     border-bottom-right-radius: 10px;
-     border: none;
+  font-family: 'lato', sans-serif;
+  font-size: 16px;
+  width: 200px;
+  height: 200px;
+  border: none;
 }
 
 
 textarea:focus {
   outline: none;
   box-shadow: none;
+
 }
 
 
 .cabecalho{
   display: flex;
   padding: 10px;
-  background-color: rgb(43, 40, 40);
+  background-color:#080916;
   justify-content: space-between;
   border-top-left-radius: 10px;
-   border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
 
 }
  
@@ -54,6 +55,10 @@ textarea:focus {
 .botaoVerde{
   background-color: #6acfad;
 }
+.botaoAmarelo{
+  background-color:#FFF6B7;
+
+}
 
 .botao:hover{
     cursor: pointer;
@@ -64,4 +69,38 @@ textarea:focus {
   border:  none;
   color: aliceblue;
 
+}
+
+.opcoes{
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  position: relative;
+  background-color:#080916;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  
+}
+
+.negrito{
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+.italico{
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+.li{
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+.negrito, .italico, .li:hover{
+  cursor: pointer;
 }
