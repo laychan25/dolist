@@ -2,40 +2,49 @@ import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./nota.module.css";
 import { NotasContext } from "../../NotasContext";
 import React from "react";
+import { useQuill } from "react-quilljs";
+import "quill/dist/quill.snow.css";
+import './estilo-quill.css'
+import { Quill } from "react-quill";
 
 const Nota = () => {
   const { notas, setNotas } = useContext(NotasContext);
+
+  const quillref = useRef({});
+
   const handleChange = (id, novoTexto) => {
     setNotas((prevNota) =>
       prevNota.map((nota) =>
         nota.id === id ? { ...nota, texto: novoTexto } : nota
       )
     );
+    localStorage.setItem("notas", JSON.stringify((notas.texto = novoTexto)));
   };
 
   const [click, setClicado] = useState(false);
   const posicaoInicial = useRef({ x: 0, y: 0 });
-  const posicaoNotaInicial = useRef({x: notas.left, y: notas.top});
+  const posicaoNotaInicial = useRef({ x: notas.left, y: notas.top });
+
+  const [bold, setBold] = useState(false);
 
   const notaArrastadaId = useRef(null);
 
   const valorMovido = useRef({ x: 0, y: 0 });
-
 
   const containerRef = useRef(null);
   const [tamanhoConteiner, seTamanho] = useState({ width: 0, height: 0 });
 
   const notaWidth = 200;
   const notaHeight = 200;
-  const padding = 20
+  const padding = 20;
 
-  const [zIndexMax , setIndex]= useState(2)
+  const [zIndexMax, setIndex] = useState(2);
 
   useEffect(() => {
     if (containerRef.current) {
       seTamanho({
         width: containerRef.current.offsetWidth,
-       height: containerRef.current.offsetHeight,
+        height: containerRef.current.offsetHeight,
       });
     }
   }, []);
@@ -45,17 +54,15 @@ const Nota = () => {
     posicaoInicial.current = { x: e.clientX, y: e.clientY };
     notaArrastadaId.current = id;
     posicaoNotaInicial.current = { top: notaTop, left: notaLeft };
-   
   };
 
   const MoveNota = (e) => {
     if (click) {
-      valorMovido.current={
+      valorMovido.current = {
         x: e.clientX,
         y: e.clientY,
       };
     }
-   
   };
 
   const soltaNota = () => {
@@ -70,29 +77,29 @@ const Nota = () => {
     const novaLeft = posicaoNotaInicial.current.left + deslocamentoX;
     const novaTop = posicaoNotaInicial.current.top + deslocamentoY;
 
-    
     const novoX = Math.max(padding, Math.min(novaLeft, maxX));
     const novoY = Math.max(padding, Math.min(novaTop, maxY));
     handleMove(id, novoX, novoY);
     setClicado(false);
     notaArrastadaId.current = null;
     posicaoNotaInicial.current = { top: 0, left: 0 };
-    
   };
 
   useEffect(() => {
-  document.addEventListener("mousemove", MoveNota);
-  document.addEventListener("mouseup", soltaNota);
+    document.addEventListener("mousemove", MoveNota);
+    document.addEventListener("mouseup", soltaNota);
 
-  return () => {
-    document.removeEventListener("mousemove", MoveNota);
-    document.removeEventListener("mouseup", soltaNota);
-  };
-},);
+    return () => {
+      document.removeEventListener("mousemove", MoveNota);
+      document.removeEventListener("mouseup", soltaNota);
+    };
+  });
 
   const handleMove = (id, novoX, novoY) => {
     setNotas((prevNota) =>
-      prevNota.map((nota) => (nota.id === id ? { ...nota, left:novoX, top:novoY } : nota))
+      prevNota.map((nota) =>
+        nota.id === id ? { ...nota, left: novoX, top: novoY } : nota
+      )
     );
   };
 
@@ -102,14 +109,20 @@ const Nota = () => {
     );
   };
 
-  const handleFoco=(id)=>{
-     setNotas(prevNotas => prevNotas.map(nota=> nota.id === id ? {...nota, zIndex: zIndexMax }: nota ))
-     setIndex(prev=> prev + 1)
-  }
+  const handleFoco = (id) => {
+    setNotas((prevNotas) =>
+      prevNotas.map((nota) =>
+        nota.id === id ? { ...nota, zIndex: zIndexMax } : nota
+      )
+    );
+    setIndex((prev) => prev + 1);
+  };
 
-  const apagaNota=(id)=>{
-     setNotas(prevNotas=> prevNotas.filter(nota=> nota.id === id? false: true))
-  }
+  const apagaNota = (id) => {
+    setNotas((prevNotas) =>
+      prevNotas.filter((nota) => (nota.id === id ? false : true))
+    );
+  };
 
   return (
     <section ref={containerRef} className={styles.secao}>
@@ -121,49 +134,42 @@ const Nota = () => {
               position: "absolute",
               left: `${nota.left}px`,
               top: `${nota.top}px`,
-              zIndex: `${nota.zIndex}`
+              zIndex: `${nota.zIndex}`,
             }}
           >
             <header className={styles.cabecalho}>
-              <div>
+              
+                <div className={styles.divBotao}>
                 <button
-                  className={`${styles.botao} ${styles.botaoAzul}`}
-                  onClick={() => handleCor(nota.id, "#A7C7E7")}
-                ></button>
-                <button
-                  className={`${styles.botao} ${styles.botaoRosa}`}
-                  onClick={() => handleCor(nota.id, "#D7BCE8")}
-                ></button>
-                <button
-                  className={`${styles.botao} ${styles.botaoVerde}`}
-                  onClick={() => handleCor(nota.id, "#BEEBC4")}
-                ></button>
-                <button
-                  className={`${styles.botao} ${styles.botaoAmarelo}`}
-                  onClick={() => handleCor(nota.id, "#FFF6B7")}
-                ></button>
+                  onClick={() => apagaNota(nota.id)}
+                  className={styles.botaoApagar}
+                >
+                  X
+                </button>
               </div>
-              <div>
-                <button onClick={()=>apagaNota(nota.id)} className={styles.botaoApagar}>X</button>
-              </div>
+            
+              <div
+                key={nota.id}     
+                ref={(el) => {
+                  if (el && !quillref.current[nota.id]) {
+                    quillref.current[nota.id] = new Quill(el, {
+                      theme: "snow",
+                      modules: {
+                        toolbar: [['bold', 'italic', 'underline'],       
+                            [{ 'list': 'bullet' }]  
+                     ] },
+                       placeholder: 'Anote aqui'
+                    });
+                    quillref.current[nota.id].on("text-change", () => {
+                      handleChange(
+                        nota.id,
+                        quillref.current[nota.id].root.innerHTML);
+                    });
+                  }
+                }}
+              />
             </header>
-            <textarea
-              style={{
-                backgroundColor: `${nota.cor}`,
-                height: "150px",
-                zIndex: `${nota.zIndex}`
-              }}
-               onClick={()=> handleFoco(nota.id)}
-              className={`${styles.nota}`}
-              value={nota.texto}
-              onChange={(e) => handleChange(nota.id, e.target.value)}
-            > 
-            </textarea>
-            <div className={styles.opcoes}>
-               <button className={styles.negrito}>B</button>
-               <button className={styles.italico}>I</button>
-               <button className={styles.li}>li</button>
-            </div>
+            
           </div>
         </React.Fragment>
       ))}

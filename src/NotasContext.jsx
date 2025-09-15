@@ -1,31 +1,23 @@
 import { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+
 export const NotasContext = createContext();
 
 export function NotasProvider({ children }) {
-  const [notas, setNotas] = useState([]);
+  const [notas, setNotas] = useState(()=>{
+     const saved = localStorage.getItem('notas');
+     return saved ? JSON.parse(saved) : []
+  });
 
-  localStorage.setItem("notas", JSON.stringify(notas));
+  
+useEffect(()=>{
+localStorage.setItem('notas', JSON.stringify(notas))
+},[notas])
 
   const SalvaNovaNota = (novaNota) => {
     setNotas([...notas, novaNota]);
   };
-
-  const salvaLocalStorage = () => {
-    let notasString = JSON.stringify(notas)
-    localStorage.setItem('notas', notasString);
- 
-  };
-  
-  const buscaNotas=()=>{
-    const dados = localStorage.getItem('notas')
-    if(!dados){
-     let response = JSON.parse(dados)
-      setNotas(response)
-      console.log('alo')
-    }
-  }
 
   
   const criaNota = () => {
@@ -43,23 +35,17 @@ export function NotasProvider({ children }) {
         top,
         zIndex: 1,
       };
-
+      localStorage.setItem('notas', JSON.stringify(novaNota))
       return [...prevNotas, novaNota];
     });
   };
 
   
-
-  useEffect(()=>{
-   buscaNotas()
-  },[])
-
   let contexto = {
     notas,
     setNotas,
     SalvaNovaNota,
     criaNota,
-    salvaLocalStorage,
   };
   return (
     <NotasContext.Provider value={contexto}>{children}</NotasContext.Provider>
