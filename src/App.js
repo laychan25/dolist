@@ -1,18 +1,17 @@
-import './App.css';
-import ContainerNota from './Components/containerNota/containerNota'
-import SideBar from './Components/menu/sidebar';
-import Nota from './Components/Nota/Nota';
-import { NotasProvider } from './NotasContext';
+import "./App.css";
+import ContainerNota from "./Components/containerNota/ContainerNota";
+import ListaDeNotas from "./Components/ListaDeNotas/ListaDeNotas";
+import SideBar from "./Components/menu/sidebar";
+
+import { NotasProvider } from "./NotasContext";
 
 function App() {
   return (
     <NotasProvider>
-      <div className="App">
-        <SideBar/>
-        <ContainerNota>
-        <Nota/>
-        </ContainerNota>
-      </div>
+      <ContainerNota>
+        <SideBar />
+        <ListaDeNotas/>
+      </ContainerNota>
     </NotasProvider>
   );
 }

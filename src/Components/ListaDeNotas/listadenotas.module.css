@@ -1,0 +1,16 @@
+.secao{
+  position: relative;
+  width: 85vw;
+  height: 95vh;
+  max-height: 95vh;
+  margin: 20px;
+  background-color: #C8D9EB;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.div{
+    position: absolute;
+    margin: 20px;
+    
+}

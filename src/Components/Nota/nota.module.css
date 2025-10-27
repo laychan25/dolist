@@ -1,115 +1,30 @@
-.secao{
-  width: 85vw;
-  margin: 20px;
-  background-color: #C8D9EB
-}
-
-
-.div{
-    position: absolute;
-    margin: 20px;
-    
-}
-
 .nota{
-  font-family: 'lato', sans-serif;
-  font-size: 16px;
-  width: 200px;
-  height: 200px;
-  border: none;
-}
-
-
-textarea:focus {
-  outline: none;
-  box-shadow: none;
-
-}
-
-
-.cabecalho{
-  color:  #C8D9EB;
-  padding: 10px;
-  background-color:#080916;
-  justify-content: space-between;
-  border-radius: 8px;
-  width: 200px;
-  height: auto;
-  
-
-}
- 
-.botao{
-  width: 25px;
-  height: 25px;
-  margin: 2px;
-  border: none;
-}
-
-.botaoAzul{
- background-color: #4496c5;
-}
-
-.botaoRosa{
- background-color: #a970c4;
-}
-
-.botaoVerde{
-  background-color: #6acfad;
-}
-.botaoAmarelo{
-  background-color:#FFF6B7;
-
-}
-
-.botao:hover{
-    cursor: pointer;
-}
-
-.divBotao{
-     display: flex;
-     justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: auto;
+    max-width: 200px;
+    background-color: #080916;
+    color: aliceblue;
+    
     
 }
 
-.botaoApagar{
+:global(.ql-editor::before) {
+  color: #888 !important;
+  opacity: 1 !important;
+}
+
+
+.containerBotao{
+  display: flex;
+  align-items: flex-end;
+}
+
+.botaoApaga{
   background: transparent;
+  align-self: flex-end;
   border:  none;
   color: aliceblue;
-
-}
-
-.opcoes{
-  display: flex;
-  text-align: center;
-  justify-content: flex-start;
-  gap: 8px;
-  position: relative;
-  background-color:#080916;
-  margin: 0;
-  padding: 0;
-  height: 30px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
   
-}
-
-.negrito{
-  background-color: transparent;
-  color: white;
-  border: none;
-}
-.italico{
-  background-color: transparent;
-  color: white;
-  border: none;
-}
-.li{
-  background-color: transparent;
-  color: white;
-  border: none;
-}
-
-.negrito, .italico, .li:hover{
-  cursor: pointer;
 }
