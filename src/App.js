@@ -1,7 +1,7 @@
 import "./App.css";
-import ContainerNota from "./Components/containerNota/ContainerNota";
-import ListaDeNotas from "./Components/ListaDeNotas/ListaDeNotas";
-import SideBar from "./Components/menu/sidebar";
+import ContainerNota from "./components/containerNota/ContainerNota";
+import ListaDeNotas from "./components/ListaDeNotas/ListaDeNotas";
+import SideBar from "./components/menu/sidebar";
 
 import { NotasProvider } from "./NotasContext";
 
