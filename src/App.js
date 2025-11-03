@@ -1,5 +1,5 @@
 import "./App.css";
-import ContainerNota from "./components/containerNota/ContainerNotatemp";
+import ContainerNota from "./components/containerNota/ContainerNota";
 import ListaDeNotas from "./components/ListaDeNotas/ListaDeNotas";
 import SideBar from "./components/menu/sidebar";
 
